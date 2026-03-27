@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malerwerkstätte Seiler – Dußlingen & Mössingen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F2EA;
+    --warm-white: #FEFCF8;
+    --light-bg: #F0EBE0;
+    --ink: #2C2418;
+    --ink-light: #5C5040;
+    --dust: #C8B89A;
+    --rust: #C06428;
+    --rust-light: #E08040;
+    --rust-pale: #F5E8DC;
+    --border: rgba(44,36,24,0.10);
+    --ff-serif: 'Cormorant Garamond', Georgia, serif;
+    --ff-sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--ink);
+    font-family: var(--ff-sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px;
+    background: rgba(253,250,245,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--ff-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.2;
+  }
+  .nav-logo span { display: block; font-weight: 300; font-style: italic; font-size: 0.85rem; color: var(--rust); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-light); text-decoration: none; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rust); }
+  .nav-cta {
+    background: var(--ink); color: var(--cream);
+    padding: 10px 24px; font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; font-weight: 400;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--rust); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px 80px 72px;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--rust); font-weight: 500; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--rust);
+  }
+  .hero h1 {
+    font-family: var(--ff-serif);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    color: var(--ink);
+  }
+  .hero h1 em { font-style: italic; color: var(--rust); }
+  .hero-sub {
+    font-size: 1.05rem; line-height: 1.75;
+    color: var(--ink-light); max-width: 400px; margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 24px; }
+  .btn-primary {
+    background: var(--rust); color: white;
+    padding: 16px 36px; font-size: 0.82rem; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; font-weight: 500;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--ink); transform: translateY(-1px); }
+  .btn-ghost {
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-light); text-decoration: none; font-weight: 400;
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--rust); }
+  .btn-ghost::after { content: '→'; font-size: 1rem; }
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-img-placeholder {
+    width: 100%; height: 100%; min-height: 600px;
+    background: linear-gradient(135deg, #C8A882 0%, #D4B890 30%, #E8C8A0 60%, #F0D8B0 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero-img-placeholder::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(192,100,40,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(255,220,180,0.3) 0%, transparent 50%);
+  }
+  /* Paint stroke SVG decoration */
+  .hero-paint {
+    position: absolute; bottom: 10%; right: -20px;
+    width: 280px; opacity: 0.15;
+  }
+  .hero-badge {
+    position: absolute; bottom: 48px; left: -24px;
+    background: var(--cream); padding: 24px 28px;
+    border-left: 3px solid var(--rust);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .hero-badge .num {
+    font-family: var(--ff-serif); font-size: 3rem; font-weight: 600; line-height: 1;
+    color: var(--rust);
+  }
+  .hero-badge .label {
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-light); margin-top: 4px;
+  }
+  .paint-circle {
+    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.5;
+  }
+  .pc1 { width: 300px; height: 300px; background: rgba(220,140,80,0.45); top: 10%; right: 10%; }
+  .pc2 { width: 200px; height: 200px; background: rgba(240,200,150,0.5); bottom: 20%; right: 30%; }
+  .pc3 { width: 150px; height: 150px; background: rgba(200,160,110,0.4); top: 50%; right: 5%; }
+
+  /* ── MARQUEE STRIP ── */
+  .marquee-strip {
+    background: var(--ink); color: var(--cream);
+    padding: 16px 0; overflow: hidden;
+  }
+  .marquee-inner {
+    display: flex; gap: 60px; animation: marquee 18s linear infinite;
+    white-space: nowrap; width: max-content;
+  }
+  .marquee-inner span {
+    font-family: var(--ff-serif); font-style: italic;
+    font-size: 1.1rem; opacity: 0.8;
+  }
+  .marquee-inner .dot {
+    font-style: normal; color: var(--rust); font-family: var(--ff-sans);
+  }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTION STRUCTURE ── */
+  section { padding: 100px 72px; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--rust); font-weight: 500; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--rust); }
+  .section-title {
+    font-family: var(--ff-serif); font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+    font-weight: 300; line-height: 1.1; color: var(--ink);
+  }
+  .section-title em { font-style: italic; color: var(--rust); }
+
+  /* ── LEISTUNGEN ── */
+  #leistungen { background: var(--cream); }
+  .leistungen-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px; background: var(--border);
+    margin-top: 60px; border: 1px solid var(--border);
+  }
+  .leistung-card {
+    background: var(--cream); padding: 44px 36px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .leistung-card:hover { background: var(--warm-white); }
+  .leistung-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--rust);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .leistung-card:hover::after { transform: scaleX(1); }
+  .leistung-num {
+    font-family: var(--ff-serif); font-size: 3.5rem; font-weight: 300;
+    color: var(--dust); line-height: 1; margin-bottom: 16px;
+  }
+  .leistung-title {
+    font-family: var(--ff-serif); font-size: 1.4rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 12px; line-height: 1.2;
+  }
+  .leistung-text {
+    font-size: 0.88rem; line-height: 1.7; color: var(--ink-light);
+    font-weight: 300;
+  }
+  .leistung-icon {
+    position: absolute; top: 36px; right: 36px;
+    font-size: 1.8rem; opacity: 0.2;
+  }
+
+  /* ── ÜBER UNS ── */
+  #ueberuns {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; padding: 100px 72px;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(44,36,24,0.04), rgba(44,36,24,0.12)),
+      url('frank-seiler-upscaled.jpg') center 18% / cover no-repeat,
+      linear-gradient(160deg, #D4B890 0%, #C8A878 50%, #B89060 100%);
+  }
+  .about-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(254,252,248,0.04) 0%, rgba(44,36,24,0.06) 100%),
+      radial-gradient(ellipse at 55% 18%, rgba(255,255,255,0.28) 0%, transparent 34%),
+      radial-gradient(ellipse at 62% 42%, rgba(220,140,80,0.10) 0%, transparent 65%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  /* decorative large serif letter */
+  .about-img::after {
+    content: 'S'; font-family: var(--ff-serif); font-size: 20rem;
+    font-weight: 600; color: rgba(255,255,255,0.18);
+    position: absolute; bottom: -40px; right: -20px; line-height: 1;
+  }
+  .about-accent {
+    position: absolute; top: -24px; right: -24px;
+    width: 120px; height: 120px;
+    border: 2px solid var(--rust); opacity: 0.4;
+  }
+  .about-accent2 {
+    position: absolute; bottom: -24px; left: -24px;
+    width: 80px; height: 80px;
+    background: var(--rust-pale);
+  }
+  .about-years {
+    position: absolute; bottom: 32px; right: -32px;
+    background: var(--rust); color: white; padding: 28px 24px; text-align: center;
+  }
+  .about-years .big { font-family: var(--ff-serif); font-size: 3rem; font-weight: 300; line-height: 1; }
+  .about-years .small { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+  .about-content h2 { margin-bottom: 28px; }
+  .about-content p {
+    font-size: 1rem; line-height: 1.85; color: var(--ink-light);
+    margin-bottom: 20px; font-weight: 300;
+  }
+  .about-content p strong { color: var(--ink); font-weight: 500; }
+  .about-sig {
+    font-family: var(--ff-serif); font-style: italic; font-size: 1.6rem;
+    color: var(--rust); margin-top: 36px;
+  }
+
+  /* ── VORTEILE / STATS ── */
+  .stats {
+    background: var(--rust-pale);
+    border-top: 1px solid rgba(192,100,40,0.15);
+    border-bottom: 1px solid rgba(192,100,40,0.15);
+    padding: 70px 72px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  }
+  .stat {
+    padding: 36px; border-right: 1px solid rgba(192,100,40,0.15);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--ff-serif); font-size: 3.5rem; font-weight: 300;
+    color: var(--rust); line-height: 1; margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-light); font-weight: 500;
+  }
+  .stat-desc { font-size: 0.88rem; color: var(--ink-light); margin-top: 8px; line-height: 1.5; }
+
+  /* ── REFERENZEN ── */
+  #referenzen { padding: 100px 72px; }
+  .ref-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+  .ref-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 260px 260px;
+    gap: 12px;
+  }
+  .ref-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    background: var(--cream);
+  }
+  .ref-card.large { grid-row: 1 / 3; }
+  .ref-inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #C8A882, #D4B890 60%, #B5602A);
+    position: relative;
+    transition: transform 0.6s ease;
+  }
+  .ref-card:hover .ref-inner { transform: scale(1.04); }
+  .ref-inner::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(44,36,24,0.55) 0%, transparent 55%);
+  }
+  .ref-label {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    color: white;
+  }
+  .ref-label h3 { font-family: var(--ff-serif); font-size: 1.2rem; font-weight: 400; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+  .ref-label p { font-size: 0.75rem; opacity: 0.85; margin-top: 2px; letter-spacing: 0.06em; }
+  .ref-card:nth-child(1) .ref-inner { background: linear-gradient(145deg, #C8A070 0%, #D4B080 45%, #C06428 80%, #D47840 100%); }
+  .ref-card:nth-child(2) .ref-inner { background: linear-gradient(135deg, #B89060 0%, #C8A878 50%, #A07848 100%); }
+  .ref-card:nth-child(3) .ref-inner { background: linear-gradient(120deg, #C0B080 0%, #C8B888 55%, #A09868 100%); }
+  .ref-card:nth-child(4) .ref-inner { background: linear-gradient(150deg, #D0A868 0%, #D8B878 55%, #C06840 100%); }
+  .ref-card:nth-child(5) .ref-inner { background: linear-gradient(125deg, #B8A070 0%, #C8B080 50%, #A88858 100%); }
+
+  /* ── KONTAKT ── */
+  #kontakt {
+    background: var(--cream);
+    padding: 100px 72px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: start;
+  }
+  .kontakt-left h2 { margin-bottom: 24px; }
+  .kontakt-left p { font-size: 1rem; line-height: 1.8; color: var(--ink-light); margin-bottom: 40px; }
+  .kontakt-info { display: flex; flex-direction: column; gap: 20px; }
+  .kontakt-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding-bottom: 20px; border-bottom: 1px solid var(--border);
+  }
+  .kontakt-item:last-child { border-bottom: none; }
+  .k-icon {
+    width: 40px; height: 40px; background: var(--rust);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1rem; flex-shrink: 0;
+  }
+  .k-text { font-size: 0.9rem; line-height: 1.6; }
+  .k-text strong { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 2px; }
+  .k-text a { color: var(--ink); text-decoration: none; }
+  .k-text a:hover { color: var(--rust); }
+  /* Form */
+  .kontakt-form { display: flex; flex-direction: column; gap: 0; }
+  .form-title {
+    font-family: var(--ff-serif); font-size: 1.6rem; font-weight: 300;
+    margin-bottom: 28px; color: var(--ink);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; margin-bottom: 16px; }
+  .form-group label {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-light); margin-bottom: 8px; font-weight: 500;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    background: var(--warm-white); border: 1px solid var(--border);
+    padding: 14px 16px; font-family: var(--ff-sans); font-size: 16px;
+    color: var(--ink); outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--rust);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    background: var(--rust); color: white; border: none;
+    padding: 16px 40px; font-family: var(--ff-sans);
+    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; font-weight: 500;
+    transition: background 0.25s, transform 0.2s;
+    align-self: flex-start; margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--ink); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #3C2E20; color: var(--cream);
+    padding: 60px 72px 40px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px; padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .footer-brand {
+    font-family: var(--ff-serif); font-size: 1.6rem; font-weight: 300;
+    margin-bottom: 16px; line-height: 1.2;
+  }
+  .footer-brand em { font-style: italic; color: var(--rust-light); }
+  .footer-desc { font-size: 0.85rem; line-height: 1.7; color: rgba(245,240,232,0.65); }
+  .footer-col h4 {
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--rust-light); margin-bottom: 20px; font-weight: 500;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    color: rgba(245,240,232,0.65); text-decoration: none; font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 32px; font-size: 0.78rem; color: rgba(245,240,232,0.4);
+  }
+  .footer-bottom a { color: rgba(245,240,232,0.5); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--cream); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    /* Nav */
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .nav-cta { padding: 9px 16px; font-size: 0.72rem; }
+
+    /* Hero */
+    .hero {
+      display: flex; flex-direction: column;
+      min-height: auto; padding-top: 70px;
+    }
+    .hero-right { display: none; }
+    .hero-left { padding: 48px 20px 52px; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero-sub { font-size: 0.95rem; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .btn-primary { width: 100%; text-align: center; padding: 16px 24px; }
+
+    /* Marquee */
+    .marquee-strip { padding: 12px 0; }
+
+    /* Sections */
+    section { padding: 56px 20px; }
+    .section-title { font-size: 2rem; }
+
+    /* Leistungen */
+    #leistungen { padding: 56px 20px; }
+    .leistungen-grid { grid-template-columns: 1fr; gap: 0; }
+    .leistung-card { padding: 32px 24px; }
+
+    /* Stats */
+    .stats {
+      grid-template-columns: 1fr 1fr;
+      padding: 40px 20px; gap: 0;
+    }
+    .stat { padding: 24px 16px; border-right: none; border-bottom: 1px solid rgba(192,100,40,0.15); }
+    .stat:nth-child(odd) { border-right: 1px solid rgba(192,100,40,0.15); }
+    .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+    .stat-num { font-size: 2.6rem; }
+
+    /* Über uns */
+    #ueberuns {
+      display: flex; flex-direction: column;
+      padding: 56px 20px; gap: 40px;
+    }
+    .about-visual { order: -1; }
+    .about-img { aspect-ratio: 4/3; }
+    .about-years { right: 0; bottom: 16px; padding: 18px 16px; }
+    .about-years .big { font-size: 2rem; }
+    .about-accent { display: none; }
+
+    /* Referenzen */
+    #referenzen { padding: 56px 20px; }
+    .ref-intro { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 32px; }
+    .ref-grid {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .ref-card { height: 200px; }
+    .ref-card.large { height: 240px; grid-row: auto; }
+
+    /* Kontakt */
+    #kontakt {
+      display: flex; flex-direction: column;
+      padding: 56px 20px; gap: 48px;
+    }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+
+    /* Footer */
+    footer { padding: 48px 20px 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  }
+
+  /* Tablet */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    nav { padding: 18px 32px; }
+    .hero-left { padding: 60px 40px; }
+    section { padding: 80px 40px; }
+    #ueberuns { padding: 80px 40px; gap: 48px; }
+    .leistungen-grid { grid-template-columns: 1fr 1fr; }
+    .stats { padding: 56px 40px; }
+    .ref-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .ref-card.large { grid-row: auto; height: 220px; }
+    .ref-card { height: 200px; }
+    #kontakt { padding: 80px 40px; gap: 48px; }
+    footer { padding: 56px 40px 36px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+
+  /* ── PAGE LOADER ── */
+  body.is-loading {
+    overflow: hidden;
+  }
+  .page-loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,0.76) 0%, transparent 30%),
+      radial-gradient(circle at 84% 20%, rgba(224,128,64,0.08) 0%, transparent 30%),
+      linear-gradient(135deg, #fdf9f3 0%, #f3ebe0 52%, #eee2d4 100%);
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.9s ease, visibility 0.9s ease;
+  }
+  .page-loader.hidden {
+    opacity: 0; visibility: hidden; pointer-events: none;
+  }
+  .loader-inner {
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+    text-align: center;
+  }
+  .signature-loader {
+    width: min(84vw, 660px);
+    aspect-ratio: 1.25 / 1;
+    overflow: visible;
+    filter: drop-shadow(0 28px 54px rgba(44,36,24,0.12));
+  }
+  .signature-loader .guide-path {
+    fill: none;
+    stroke: rgba(192,100,40,0.045);
+    stroke-width: 52;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .signature-loader .paint-shadow {
+    fill: none;
+    stroke: rgba(112,48,20,0.16);
+    stroke-width: 56;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: url(#wetShadow);
+  }
+  .signature-loader .paint-stroke {
+    fill: none;
+    stroke: url(#paintGradient);
+    stroke-width: 48;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: url(#paintTexture) drop-shadow(0 14px 26px rgba(192,100,40,0.18));
+  }
+  .signature-loader .paint-core {
+    fill: none;
+    stroke: url(#paintGradientCore);
+    stroke-width: 31;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.96;
+    mix-blend-mode: screen;
+    filter: blur(0.12px);
+  }
+  .signature-loader .paint-highlight {
+    fill: none;
+    stroke: rgba(255,255,255,0.22);
+    stroke-width: 9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: blur(0.32px);
+  }
+  .signature-loader .stroke-mask-path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 74;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .signature-loader .edge-gloss,
+  .signature-loader .paint-speck,
+  .signature-loader .paint-drip {
+    opacity: 0;
+    transition: opacity 0.65s ease;
+  }
+  .page-loader.done .signature-loader .edge-gloss,
+  .page-loader.done .signature-loader .paint-speck,
+  .page-loader.done .signature-loader .paint-drip {
+    opacity: 1;
+  }
+  .paint-tip {
+    opacity: 0;
+    filter: drop-shadow(0 8px 12px rgba(145,64,26,0.24));
+  }
+  .paint-tip ellipse:last-child {
+    mix-blend-mode: screen;
+  }
+  .loader-text {
+    font-size: 0.78rem; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .loader-sub {
+    font-family: var(--ff-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(44,36,24,0.72);
+  }
+
+  /* ── FRAMER-ARTIGE SLIDES ── */
+
+  .slide-in, .slide-left, .slide-right, .scale-in, .smooth-reveal {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition:
+      transform 1.15s cubic-bezier(.16,1,.3,1),
+      opacity 1.15s cubic-bezier(.16,1,.3,1),
+      filter 1.15s cubic-bezier(.16,1,.3,1);
+    filter: blur(12px);
+  }
+  .slide-in { transform: translateY(64px); }
+  .slide-left { transform: translateX(-78px); }
+  .slide-right { transform: translateX(78px); }
+  .scale-in { transform: translateY(38px) scale(0.955); }
+  .slide-in.visible, .slide-left.visible, .slide-right.visible, .scale-in.visible {
+    opacity: 1;
+    transform: translate(0,0) scale(1);
+    filter: blur(0);
+  }
+  .slow-slide {
+    transition-duration: 1.6s !important;
+    transition-timing-function: cubic-bezier(.12,.95,.2,1) !important;
+    filter: blur(14px);
+  }
+  .slow-slide.slide-left { transform: translateX(-96px); }
+  .slow-slide.slide-right { transform: translateX(96px); }
+  .slow-slide.slide-in { transform: translateY(78px); }
+
+
+  .smooth-reveal {
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    transition:
+      transform 1.7s cubic-bezier(.16,1,.3,1),
+      opacity 1.7s cubic-bezier(.16,1,.3,1),
+      filter 1.7s cubic-bezier(.16,1,.3,1);
+    filter: blur(16px);
+  }
+  .smooth-reveal.reveal-left { transform: translateX(-92px); }
+  .smooth-reveal.reveal-right { transform: translateX(92px); }
+  .smooth-reveal.reveal-up { transform: translateY(78px); }
+  .smooth-reveal.visible {
+    opacity: 1;
+    transform: translate3d(0,0,0);
+    filter: blur(0);
+  }
+  #ueberuns .smooth-reveal {
+    transition-duration: 1.95s;
+    transition-timing-function: cubic-bezier(.14,.9,.2,1);
+  }
+  #referenzen .smooth-reveal {
+    transition-duration: 1.9s;
+    transition-timing-function: cubic-bezier(.14,.9,.2,1);
+  }
+
+  .hero-left > * {
+    opacity: 0;
+    transform: translateY(28px);
+    animation: heroReveal 0.9s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero-left > *:nth-child(1) { animation-delay: 0.18s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.42s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.54s; }
+  .hero-right {
+    opacity: 0;
+    transform: translateX(70px) scale(1.04);
+    animation: heroVisualReveal 1.1s cubic-bezier(.22,1,.36,1) 0.34s forwards;
+  }
+  @keyframes heroReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes heroVisualReveal {
+    to { opacity: 1; transform: translateX(0) scale(1); }
+  }
+
+  .ref-card, .leistung-card, .stat {
+    transition: transform 0.45s cubic-bezier(.22,1,.36,1), box-shadow 0.45s ease, background 0.3s;
+  }
+  .ref-card:hover, .leistung-card:hover, .stat:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(44,36,24,0.08);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-loader, .slide-in, .slide-left, .slide-right, .scale-in, .smooth-reveal, .hero-left > *, .hero-right, .fade-up {
+      transition: none !important;
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+    }
+  }
+
+</style>
+</head>
+<body class="is-loading">
+
+<div class="page-loader" id="pageLoader" aria-hidden="true">
+  <div class="loader-inner">
+    <svg class="signature-loader" viewBox="0 0 620 500" role="img" aria-label="Ein gemaltes S entsteht aus flüssiger Farbe">
+      <defs>
+        <linearGradient id="paintGradient" x1="94" y1="60" x2="468" y2="414" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#f4cea0"/>
+          <stop offset="18%" stop-color="#e39a5a"/>
+          <stop offset="54%" stop-color="#bf632d"/>
+          <stop offset="82%" stop-color="#953f1d"/>
+          <stop offset="100%" stop-color="#6b3016"/>
+        </linearGradient>
+        <linearGradient id="paintGradientCore" x1="110" y1="76" x2="430" y2="390" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="rgba(255,243,228,0.95)"/>
+          <stop offset="38%" stop-color="rgba(255,226,192,0.72)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0.05)"/>
+        </linearGradient>
+        <filter id="paintTexture" x="-25%" y="-25%" width="150%" height="150%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="9" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <filter id="wetShadow" x="-35%" y="-35%" width="170%" height="170%">
+          <feGaussianBlur stdDeviation="4.6"/>
+        </filter>
+        <filter id="wetSoft" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="2.2"/>
+        </filter>
+        <mask id="strokeRevealMask">
+          <rect width="100%" height="100%" fill="black"/>
+          <path id="loaderMaskPath" class="stroke-mask-path" d="M454 84C406 48 316 42 245 74C186 101 162 148 168 191C174 230 211 256 275 271C333 285 378 298 395 332C413 370 385 418 320 432C247 447 160 419 112 366C86 338 76 311 75 286" />
+        </mask>
+      </defs>
+
+      <path class="guide-path" d="M454 84C406 48 316 42 245 74C186 101 162 148 168 191C174 230 211 256 275 271C333 285 378 298 395 332C413 370 385 418 320 432C247 447 160 419 112 366C86 338 76 311 75 286" />
+
+      <g mask="url(#strokeRevealMask)">
+        <path class="paint-shadow" d="M454 84C406 48 316 42 245 74C186 101 162 148 168 191C174 230 211 256 275 271C333 285 378 298 395 332C413 370 385 418 320 432C247 447 160 419 112 366C86 338 76 311 75 286" />
+        <path class="paint-stroke" d="M454 84C406 48 316 42 245 74C186 101 162 148 168 191C174 230 211 256 275 271C333 285 378 298 395 332C413 370 385 418 320 432C247 447 160 419 112 366C86 338 76 311 75 286" />
+        <path class="paint-core" d="M445 91C398 58 318 56 255 83C204 106 184 145 189 185C194 220 224 242 279 257C332 272 368 283 387 312C404 340 383 389 328 402C264 418 182 393 135 352C110 330 98 307 96 287" />
+        <path class="paint-highlight" d="M432 96C392 68 322 68 265 88C219 106 198 142 201 176C205 204 230 224 286 238C337 250 364 263 379 289C395 317 377 356 325 366C265 379 189 359 147 323C125 304 114 293 108 281" />
+        <ellipse class="edge-gloss" cx="266" cy="235" rx="162" ry="92" fill="rgba(255,255,255,0.075)" filter="url(#wetSoft)"/>
+        <g class="paint-speck" fill="#c86c31">
+          <circle cx="414" cy="83" r="3.6"/>
+          <circle cx="428" cy="103" r="2.2"/>
+          <circle cx="179" cy="428" r="3.0"/>
+          <circle cx="155" cy="408" r="1.8"/>
+        </g>
+        <g class="paint-drip">
+          <path d="M378 370C386 386 386 397 379 408C375 413 374 418 377 423C381 429 390 429 394 422C399 414 398 401 391 386C387 378 382 372 378 370Z" fill="rgba(171,79,35,0.92)" filter="url(#wetSoft)"/>
+          <path d="M187 412C193 423 194 432 190 441C187 447 188 453 192 457C197 462 205 460 208 453C212 444 210 433 202 420C198 414 193 411 187 412Z" fill="rgba(187,86,37,0.78)" filter="url(#wetSoft)"/>
+        </g>
+      </g>
+
+      <g id="paintTip" class="paint-tip">
+        <ellipse cx="0" cy="0" rx="27" ry="22" fill="url(#paintGradient)" filter="url(#wetSoft)"/>
+        <ellipse cx="-6" cy="-4" rx="11" ry="8" fill="rgba(255,245,232,0.48)"/>
+      </g>
+    </svg>
+    <div class="loader-text">Malerwerkstätte Seiler</div>
+    <div class="loader-sub">Qualität, die sichtbar beginnt</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    Malerwerkstätte Seiler
+    <span>Dußlingen · Mössingen</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#ueberuns">Über uns</a></li>
+    <li><a href="#referenzen">Referenzen</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="tel:015206108499" class="nav-cta">Angebot anfragen</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Handwerk mit Leidenschaft</div>
+    <h1>Farbe, die<br><em>Räume</em><br>verändert.</h1>
+    <p class="hero-sub">Von der Fassade bis zum Parkett – Malerwerkstätte Seiler bringt Qualität, Sorgfalt und Kreativität in jedes Projekt. Seit Jahren Ihr Vertrauenspartner in der Region.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Kostenloses Angebot</a>
+      <a href="#referenzen" class="btn-ghost">Referenzen ansehen</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder">
+      <div class="paint-circle pc1"></div>
+      <div class="paint-circle pc2"></div>
+      <div class="paint-circle pc3"></div>
+      <svg class="hero-paint" viewBox="0 0 200 400" fill="none">
+        <path d="M40 10 Q180 60 120 150 Q60 240 160 300 Q200 340 150 390" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M80 30 Q160 90 100 180 Q40 260 140 340" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="hero-badge">
+      <div class="num">10+</div>
+      <div class="label">Jahre Erfahrung</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Malerarbeiten</span><span class="dot">✦</span>
+    <span>Fassadengestaltung</span><span class="dot">✦</span>
+    <span>Altbausanierung</span><span class="dot">✦</span>
+    <span>Vollwärmeschutz</span><span class="dot">✦</span>
+    <span>Tapezierarbeiten</span><span class="dot">✦</span>
+    <span>Bodenbeläge</span><span class="dot">✦</span>
+    <span>Parkettversiegelung</span><span class="dot">✦</span>
+    <span>Trockenbau</span><span class="dot">✦</span>
+    <span>Malerarbeiten</span><span class="dot">✦</span>
+    <span>Fassadengestaltung</span><span class="dot">✦</span>
+    <span>Altbausanierung</span><span class="dot">✦</span>
+    <span>Vollwärmeschutz</span><span class="dot">✦</span>
+    <span>Tapezierarbeiten</span><span class="dot">✦</span>
+    <span>Bodenbeläge</span><span class="dot">✦</span>
+    <span>Parkettversiegelung</span><span class="dot">✦</span>
+    <span>Trockenbau</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <div class="section-label slide-left">Was wir anbieten</div>
+  <h2 class="section-title slide-in">Unser <em>Leistungsspektrum</em></h2>
+  <div class="leistungen-grid">
+    <div class="leistung-card scale-in">
+      <div class="leistung-num">01</div>
+      <div class="leistung-icon">🖌️</div>
+      <h3 class="leistung-title">Maler- & Tapezierarbeiten</h3>
+      <p class="leistung-text">Wohnräume, Gewerbe, Privat – wir verwandeln kahle Wände in Räume zum Wohlfühlen. Anstrich, Lackierung, Renovierung: sauber, termingerecht, hochwertig.</p>
+    </div>
+    <div class="leistung-card scale-in">
+      <div class="leistung-num">02</div>
+      <div class="leistung-icon">🏠</div>
+      <h3 class="leistung-title">Fassade & Vollwärmeschutz</h3>
+      <p class="leistung-text">Energieeffizienz und Ästhetik vereint. Material und Farbe prägen den Charakter Ihres Gebäudes – wir gestalten es mit kreativen Techniken und modernen Dämmsystemen.</p>
+    </div>
+    <div class="leistung-card scale-in">
+      <div class="leistung-num">03</div>
+      <div class="leistung-icon">🏛️</div>
+      <h3 class="leistung-title">Altbausanierung</h3>
+      <p class="leistung-text">Alte Gemäuer erfordern fachmännisches Know-how. Wir lassen Ihr Gebäude mit den neuesten Techniken in neuem Glanz erstrahlen – schnell, präzise und materialgerecht.</p>
+    </div>
+    <div class="leistung-card scale-in">
+      <div class="leistung-num">04</div>
+      <div class="leistung-icon">🔲</div>
+      <h3 class="leistung-title">Trockenbau & Stuck</h3>
+      <p class="leistung-text">Putz und Farbe für optimale Wohnatmosphäre und baulichen Schutz. Wir setzen Ihre Design-Vorstellungen um und schützen Ihr Gebäude vor Hitze, Kälte und Feuchtigkeit.</p>
+    </div>
+    <div class="leistung-card scale-in">
+      <div class="leistung-num">05</div>
+      <div class="leistung-icon">🪵</div>
+      <h3 class="leistung-title">Bodenbeläge & Parkett</h3>
+      <p class="leistung-text">Laminat, Naturstein, Parkett – Gestaltung und Verlegung von Fliesen an Wand, Boden und Treppen sowie professionelle Parkettversiegelung.</p>
+    </div>
+    <div class="leistung-card scale-in">
+      <div class="leistung-num">06</div>
+      <div class="leistung-icon">🔧</div>
+      <h3 class="leistung-title">Sanierung & Renovierung</h3>
+      <p class="leistung-text">Kompetenter Partner für alle Ausbesserungsarbeiten. Bäder, Küchen, Umbau – wir koordinieren eng mit Sanitär-, Heizungs- und Elektroinstallateuren.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat scale-in">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">Jahre Erfahrung</div>
+    <div class="stat-desc">In der Region verwurzelt und für Sie da</div>
+  </div>
+  <div class="stat scale-in">
+    <div class="stat-num">300+</div>
+    <div class="stat-label">Abgeschlossene Projekte</div>
+    <div class="stat-desc">Von kleinen Aufträgen bis zur Komplettsanierung</div>
+  </div>
+  <div class="stat scale-in">
+    <div class="stat-num">2</div>
+    <div class="stat-label">Standorte</div>
+    <div class="stat-desc">Dußlingen & Mössingen – schnell bei Ihnen vor Ort</div>
+  </div>
+  <div class="stat scale-in">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Kundenzufriedenheit</div>
+    <div class="stat-desc">Chef und Chefin beraten Sie noch persönlich</div>
+  </div>
+</div>
+
+<!-- ÜBER UNS -->
+<div id="ueberuns" class="smooth-group" data-smooth-group="about">
+  <div class="about-visual smooth-reveal reveal-left" data-smooth-item="about">
+    <div class="about-img"></div>
+    <div class="about-accent"></div>
+    <div class="about-accent2"></div>
+    <div class="about-years">
+      <div class="big">2</div>
+      <div class="small">Standorte</div>
+    </div>
+  </div>
+  <div class="about-content smooth-reveal reveal-right" data-smooth-item="about">
+    <div class="section-label smooth-reveal reveal-up" data-smooth-item="about">Wer wir sind</div>
+    <h2 class="section-title smooth-reveal reveal-up" data-smooth-item="about">Handwerk mit<br><em>Herz & Verstand</em></h2>
+    <p>Wir sind ein <strong>junges, dynamisches Unternehmen</strong> mit einem klaren Ziel: Ihre Zufriedenheit. Als erstes Versprechen haben wir uns die Kundenzufriedenheit auf die Fahnen geschrieben – und halten es.</p>
+    <p>Was uns unterscheidet: <strong>Bei uns berät Sie der Chef und die Chefin noch persönlich.</strong> Keine anonymen Callcenter, keine wechselnden Ansprechpartner. Sie sprechen mit uns direkt – von der ersten Planung bis zur Abnahme.</p>
+    <p>Als <strong>erfahrener Malerbetrieb</strong> mit zwei Standorten in Dußlingen und Mössingen realisieren wir Räume und Wände nach Ihren Vorstellungen. Farbe & Putz, der zu Ihrem Stil passt, ist uns wichtig. Deshalb übernehmen wir den gesamten Arbeitsablauf.</p>
+    <div class="about-sig">Frank Seiler</div>
+  </div>
+</div>
+
+<!-- REFERENZEN -->
+<section id="referenzen" class="smooth-group" data-smooth-group="refs">
+  <div class="ref-intro">
+    <div>
+      <div class="section-label smooth-reveal reveal-up" data-smooth-item="refs">Unsere Arbeit</div>
+      <h2 class="section-title smooth-reveal reveal-up" data-smooth-item="refs">Referenz<em>projekte</em></h2>
+    </div>
+    <a href="#kontakt" class="btn-ghost">Ihr Projekt anfragen</a>
+  </div>
+  <div class="ref-grid">
+    <div class="ref-card large smooth-reveal reveal-up" data-smooth-item="refs">
+      <div class="ref-inner"></div>
+      <div class="ref-label">
+        <h3>Komplettsanierung Wohnhaus</h3>
+        <p>Innen & Außen · Dußlingen</p>
+      </div>
+    </div>
+    <div class="ref-card smooth-reveal reveal-up" data-smooth-item="refs">
+      <div class="ref-inner"></div>
+      <div class="ref-label">
+        <h3>Fassade Mehrfamilienhaus</h3>
+        <p>Vollwärmeschutz · Mössingen</p>
+      </div>
+    </div>
+    <div class="ref-card smooth-reveal reveal-up" data-smooth-item="refs">
+      <div class="ref-inner"></div>
+      <div class="ref-label">
+        <h3>Innenrenovierung</h3>
+        <p>Tapete & Anstrich · privat</p>
+      </div>
+    </div>
+    <div class="ref-card smooth-reveal reveal-up" data-smooth-item="refs">
+      <div class="ref-inner"></div>
+      <div class="ref-label">
+        <h3>Bodenbelag & Parkett</h3>
+        <p>Laminat & Versiegelung</p>
+      </div>
+    </div>
+    <div class="ref-card smooth-reveal reveal-up" data-smooth-item="refs">
+      <div class="ref-inner"></div>
+      <div class="ref-label">
+        <h3>Altbausanierung</h3>
+        <p>Historische Substanz · regional</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="kontakt-left slide-left">
+    <div class="section-label slide-left">Sprechen Sie uns an</div>
+    <h2 class="section-title slide-in">Kostenloses<br><em>Angebot</em> anfordern</h2>
+    <p>Schildern Sie uns Ihr Projekt – wir kommen zu Ihnen, schauen es uns an und erstellen ein unverbindliches Angebot. Ganz ohne Kleingedrucktes.</p>
+    <div class="kontakt-info">
+      <div class="kontakt-item">
+        <div class="k-icon">📍</div>
+        <div class="k-text">
+          <strong>Hauptsitz</strong>
+          Wilhelm-Herter-Str. 35 · 72144 Dußlingen
+        </div>
+      </div>
+      <div class="kontakt-item">
+        <div class="k-icon">📍</div>
+        <div class="k-text">
+          <strong>Filiale Mössingen</strong>
+          In der Blumenküche 3 · 72116 Mössingen
+        </div>
+      </div>
+      <div class="kontakt-item">
+        <div class="k-icon">📞</div>
+        <div class="k-text">
+          <strong>Telefon</strong>
+          <a href="tel:015206108499">0152 0 6108499</a>
+        </div>
+      </div>
+      <div class="kontakt-item">
+        <div class="k-icon">✉️</div>
+        <div class="k-text">
+          <strong>E-Mail</strong>
+          <a href="mailto:frank-seiler@t-online.de">frank-seiler@t-online.de</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kontakt-form slide-right">
+    <div class="form-title slide-right">Ihr Projekt beschreiben</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Vorname</label>
+        <input type="text" placeholder="Max">
+      </div>
+      <div class="form-group">
+        <label>Nachname</label>
+        <input type="text" placeholder="Mustermann">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Telefon</label>
+      <input type="tel" placeholder="0123 4567890">
+    </div>
+    <div class="form-group">
+      <label>E-Mail</label>
+      <input type="email" placeholder="ihre@email.de">
+    </div>
+    <div class="form-group">
+      <label>Leistung</label>
+      <select>
+        <option value="">Bitte wählen …</option>
+        <option>Malerarbeiten / Tapezieren</option>
+        <option>Fassade & Vollwärmeschutz</option>
+        <option>Altbausanierung</option>
+        <option>Trockenbau & Stuck</option>
+        <option>Bodenbeläge & Parkett</option>
+        <option>Sanierung & Renovierung</option>
+        <option>Sonstiges</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Ihre Nachricht</label>
+      <textarea placeholder="Beschreiben Sie kurz Ihr Projekt – Ort, Umfang, Zeitraum …"></textarea>
+    </div>
+    <button class="form-submit">Anfrage absenden →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Malerwerkstätte<br><em>Frank Seiler</em></div>
+      <p class="footer-desc">Ihr erfahrener Handwerksbetrieb für Maler-, Fassaden- und Bodenbelagsarbeiten in Dußlingen, Mössingen und der gesamten Region.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Leistungen</h4>
+      <ul>
+        <li><a href="#leistungen">Malerarbeiten</a></li>
+        <li><a href="#leistungen">Fassade</a></li>
+        <li><a href="#leistungen">Altbausanierung</a></li>
+        <li><a href="#leistungen">Bodenbeläge</a></li>
+        <li><a href="#leistungen">Sanierung</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Unternehmen</h4>
+      <ul>
+        <li><a href="#ueberuns">Über uns</a></li>
+        <li><a href="#referenzen">Referenzen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="https://www.malerseiler.de/impressum.html" target="_blank">Impressum</a></li>
+        <li><a href="https://www.malerseiler.de/datenschutz.html" target="_blank">Datenschutz</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="tel:015206108499">0152 0 6108499</a></li>
+        <li><a href="mailto:frank-seiler@t-online.de">frank-seiler@t-online.de</a></li>
+        <li><a href="#">Dußlingen</a></li>
+        <li><a href="#">Mössingen</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Malerwerkstätte Frank Seiler · Alle Rechte vorbehalten</span>
+    <span><a href="https://www.malerseiler.de/impressum.html">Impressum</a> · <a href="https://www.malerseiler.de/datenschutz.html">Datenschutz</a></span>
+  </div>
+</footer>
+
+<script>
+  const standardRevealElements = document.querySelectorAll('.fade-up, .slide-in, .slide-left, .slide-right, .scale-in');
+
+  const standardRevealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      standardRevealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -10% 0px' });
+
+  standardRevealElements.forEach((el, index) => {
+    el.style.transitionDelay = `${Math.min(index % 6, 5) * 40}ms`;
+    standardRevealObserver.observe(el);
+  });
+
+  const smoothGroups = document.querySelectorAll('[data-smooth-group]');
+  const smoothObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const key = entry.target.dataset.smoothGroup;
+      const items = entry.target.querySelectorAll(`[data-smooth-item="${key}"]`);
+      items.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 180}ms`;
+        item.classList.add('visible');
+      });
+      smoothObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+  function initSmoothGroups() {
+    smoothGroups.forEach((group) => {
+      const rect = group.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
+      if (inView) {
+        const key = group.dataset.smoothGroup;
+        const items = group.querySelectorAll(`[data-smooth-item="${key}"]`);
+        items.forEach((item, index) => {
+          item.style.transitionDelay = `${index * 180}ms`;
+          requestAnimationFrame(() => item.classList.add('visible'));
+        });
+      } else {
+        smoothObserver.observe(group);
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 40 ? '0 4px 30px rgba(0,0,0,0.08)' : 'none';
+  });
+
+  function runSignatureLoader() {
+    const loader = document.getElementById('pageLoader');
+    const svg = document.querySelector('.signature-loader');
+    const path = svg.querySelector('#loaderMaskPath');
+    const paintTip = document.getElementById('paintTip');
+    const pathLength = path.getTotalLength();
+
+    path.style.strokeDasharray = `${pathLength}`;
+    path.style.strokeDashoffset = `${pathLength}`;
+
+    const duration = 2900;
+    const startTime = performance.now();
+
+    const easeMain = (t) => 1 - Math.pow(1 - t, 3);
+
+    function pointAt(progress) {
+      const len = Math.max(0, Math.min(pathLength, pathLength * progress));
+      const point = path.getPointAtLength(len);
+      const nextPoint = path.getPointAtLength(Math.min(pathLength, len + 2.2));
+      const prevPoint = path.getPointAtLength(Math.max(0, len - 2.2));
+      return { point, nextPoint, prevPoint };
+    }
+
+    function frame(now) {
+      const raw = Math.min((now - startTime) / duration, 1);
+      const progress = easeMain(raw);
+      const draw = pathLength * (1 - progress);
+      path.style.strokeDashoffset = `${draw}`;
+
+      const { point, nextPoint, prevPoint } = pointAt(progress);
+      const angle = Math.atan2(nextPoint.y - prevPoint.y, nextPoint.x - prevPoint.x) * 180 / Math.PI;
+      const pulse = 1 + Math.sin(raw * Math.PI * 9) * 0.05 * (1 - raw * 0.7);
+      const stretch = 1 + Math.sin(raw * Math.PI * 2.5) * 0.08 * (1 - raw * 0.5);
+      const driftX = Math.sin(raw * Math.PI * 6) * 1.3;
+      const driftY = Math.cos(raw * Math.PI * 5) * 1.1;
+
+      paintTip.style.opacity = raw < 0.02 || raw > 0.985 ? '0' : '1';
+      paintTip.setAttribute(
+        'transform',
+        `translate(${point.x + driftX} ${point.y + driftY}) rotate(${angle}) scale(${stretch * pulse} ${pulse})`
+      );
+
+      if (raw < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        loader.classList.add('done');
+        paintTip.style.opacity = '0';
+        setTimeout(() => {
+          loader.classList.add('hidden');
+          document.body.classList.remove('is-loading');
+          initSmoothGroups();
+        }, 560);
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('load', () => {
+    runSignatureLoader();
+    setTimeout(initSmoothGroups, 3600);
+  });
+</script>
+</body>
+</html>
